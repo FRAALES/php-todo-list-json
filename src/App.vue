@@ -8,7 +8,7 @@ export default {
     };
   },
   mounted() {
-    axios.get('http://localhost:5173/Server/index.php')
+    axios.get('http://localhost:8888/php-todo-list-json/Server/index.php')
       .then(response => {
         this.tasks = response.data;
       })
@@ -61,7 +61,6 @@ header {
 }
 
 .task-container {
-  background-color: red;
   height: 300px;
   width: 100%;
 }

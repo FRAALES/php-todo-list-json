@@ -2,10 +2,15 @@
 import axios from "axios";
 
 export default {
+  data() {
+    return {
+      tasks: []
+    };
+  },
   mounted() {
     axios.get('http://localhost:5173/Server/index.php')
       .then(response => {
-        const data = response.data;
+        this.tasks = response.data;
       })
   }
 };
@@ -23,6 +28,9 @@ export default {
 
     <div class="task-container">
       <ul>
+        <li v-for="(task, index) in tasks" :key="index">
+          {{ tasks.task }}
+        </li>
 
       </ul>
     </div>

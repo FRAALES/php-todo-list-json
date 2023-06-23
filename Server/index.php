@@ -8,4 +8,3 @@ $taskStr = file_get_contents('data.json');
 $tasks = json_decode($taskStr);
 
 echo json_encode($tasks);
-echo ($taskStr);

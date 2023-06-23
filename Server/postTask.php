@@ -4,7 +4,7 @@ header("Access-Control-Allow-Origin: http://localhost:5173");
 header("Access-Control-Allow-Headers: X-Requested-With");
 header('Content-type: application/json');
 
-$taskStr = file_get_contents('data.json');
-$tasks = json_decode($taskStr);
+$data = $_POST;
+$encData = json_encode($data);
 
-echo json_encode($tasks);
+file_put_contents('test.json', $encData);

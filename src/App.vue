@@ -4,8 +4,24 @@ import axios from "axios";
 export default {
   data() {
     return {
-      tasks: []
+      tasks: [],
+
+      newTask: {
+        todo: ""
+      }
     };
+  },
+  methods: {
+    onSubmit() {
+
+      const headers = {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      };
+
+      axios.post('http://localhost:8888/php-todo-list-json/Server/postTask.php', this.newTask, headers)
+        .then(response => console.log("response", response))
+        .catch(error => console.error("error", error));
+    }
   },
   mounted() {
     axios.get('http://localhost:8888/php-todo-list-json/Server/index.php')
@@ -21,15 +37,15 @@ export default {
     <header>
       <h1>To Do List</h1>
     </header>
-    <div class="aggiungi-task">
-      <input type="text" name="name" placeholder="Inserisci Task" />
-      <button>Aggiungi</button>
-    </div>
+    <form @submit.prevent="onSubmit" class="aggiungi-task">
+      <input type="text" name="todo" id="todo" placeholder="Inserisci Task" v-model="newTask.todo" />
+      <button>Aggiungi task</button>
+    </form>
 
     <div class="task-container">
       <ul>
         <li v-for="(task, index) in tasks" :key="index">
-          {{ tasks.task }}
+          {{ tasks.todo }}
         </li>
 
       </ul>

@@ -19,7 +19,7 @@ export default {
       };
 
       axios.post('http://localhost:8888/php-todo-list-json/Server/postTask.php', this.newTask, headers)
-        .then(response => console.log("response", response))
+        .then(response => console.log("response", response.data))
         .catch(error => console.error("error", error));
     }
   },
